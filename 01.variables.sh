@@ -1,26 +1,30 @@
 #!/bin/bash
-USERID=$(id-u)
+
+USERID=$(id -u)
+
 if [ $USERID -ne 0 ]
 then
-    echo "error :: please run the script with sudo access"
+    echo "Error :: Please run the script with sudo access"
     exit 1
 else
-    echo "you are running with root access"
+    echo "You are running with root access"
 fi
 
 dnf list installed mysql
 
 if [ $? -ne 0 ]
 then
-    echo "mysql is not installed.....going to installed"
+    echo "MySQL is not installed.....going to install"
+
     dnf install mysql -y
+
     if [ $? -eq 0 ]
     then
-        echo "installing mysql.....success"
+        echo "Installing MySQL.....success"
     else
-        echo "mysql is not installed.....failure"
-    exit 1
-    f1
+        echo "MySQL installation.....failure"
+        exit 1
+    fi
 else
-    echo "mysql is already installed nothing to do change"
+    echo "MySQL is already installed, nothing to do"
 fi
