@@ -1,7 +1,8 @@
 #!/bin/bash
  
-USERID=&(id -u)
+USERID=$(id -u)
 if [ $USERID -ne 0 ]
+then
     echo "ERROR : this user has enough permissions enable root access to run script"
     exit 1
 else
@@ -14,6 +15,7 @@ then
     echo "mysql is not installed.....now getting installing"
     dnf install mysql -y
     if [ $? -eq 0 ]
+    then
         echo "mysql installed.....successfully"
     else
         echo "mysql installed.....failure"
