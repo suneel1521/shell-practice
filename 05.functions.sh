@@ -8,18 +8,20 @@ then
 else
     echo "you have a root access"
 fi
-
+VALIDATE(){
+    if [ $1 -eq 0 ]
+    then
+        echo "installed $2.....successuful"
+    else
+        echo "installing $2.....failure"
+    fi
+}
 dnf list installed nginx
 if [ $? -ne 0 ]
 then
     echo "nginx is not instaled.....going to be installing"
-    dnf install nginx -y
-    if [ $? -eq 0 ]
-    then
-        echo "nginx installed.....successuful"
-    else
-        echo "nginx installing.....failure"
-    fi
+    dnf install mysql -y
+    VALIDATE $? "mysql"
 else
     echo "nginx is already installed.....no need be change"
 fi
