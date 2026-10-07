@@ -1,6 +1,6 @@
 #!/bin/bash
 
-PERSON1=$1 #$1 is the argument 
+PERSON1=$1 #$1 is the argument An argument is a value passed to a script or command when it is executed.
 PERSON2=$2
 
 echo "$PERSON1:: hellow $PERSON2 ela unnavu"
