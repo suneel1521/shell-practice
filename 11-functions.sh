@@ -1,10 +1,10 @@
 #!/bin/bash
 
-R=\e[31m
-G=\e[32m
-Y=\e[33m
-M=\e[35m
-N=\e[0m
+R="\e[31m"
+G="\e[32m"
+Y="\e[33m"
+M="\e[35m"
+N="\e[0m"
 
 USERID=$(id -u)
 
