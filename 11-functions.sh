@@ -10,18 +10,18 @@ USERID=$(id -u)
 
 if [ $USERID -ne 0 ]
 then
-    printf -e " $R you are not a authorized user to running the script with root access $N "
+    echo -e " $R you are not a authorized user to running the script with root access $N "
     exit 1
 else
-    printf -e "$M you are running with root access $N"
+    echo -e "$M you are running with root access $N"
 fi
 
 VALIDATE(){
     if [ $1 -eq 0 ]
     then
-       printf -e "installing $2 is.....$G success $N"
+       echo -e "installing $2 is.....$G success $N"
     else
-       printf -e "installing $2 is.....$R failure $N"
+       echo -e "installing $2 is.....$R failure $N"
        exit 1
     fi
 }
@@ -30,20 +30,20 @@ dnf list installed nginx
 
 if [ $? -ne 0 ]
 then
-   printf  "mysql is not installed....going to be install"
+   echo  "mysql is not installed....going to be install"
    dnf install nginx -y
    VALIDATE $? "mysql"
 else
-   printf -e " $Y mysql is alreday installed....nothing to do $N"
+   echo -e " $Y mysql is alreday installed....nothing to do $N"
 fi
 
 dnf list installed python
 
 if [ $? -ne 0 ]
 then
-   printf "python is not installed....going to be install"
+   echo "python is not installed....going to be install"
    dnf install python -y
    VALIDATE $? "python"
 else
-   printf -e " $Y python is alreday installed....nothing to do $N"
+   echo -e " $Y python is alreday installed....nothing to do $N"
 fi
