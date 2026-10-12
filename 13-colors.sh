@@ -16,22 +16,22 @@ mkdir -p $LOG_FOLDER
 USERID=$(id -u)
 if [ $USERID -ne 0 ]
 then
-   echo -e " $R ERROR: please execute the script with root access $N " &>> "$LOG_FILE"
+   echo -e " $R ERROR: please execute the script with root access $N " | tee -a $LOG_FILE
    exit 1
 else
-   echo -e " $G you are running with root access $N "
+   echo -e " $G you are running with root access $N " | tee -a $LOG_FILE
 fi
 
 
-echo "script started executed at $(date)" &>> "$LOG_FILE"
+echo "script started executed at $(date)" | tee -a $LOG_FILE
 
 VALIDATE(){
 
     if [ $1 -eq 0 ]
     then
-       echo -e " $G $2 is installed.....successfully $N "  &>> "$LOG_FILE"
+       echo -e " $G $2 is installed.....successfully $N "  | tee -a $LOG_FILE
     else
-       echo -e " $R $2 is install.....failure $N " &>> "$LOG_FILE"
+       echo -e " $R $2 is install.....failure $N " | tee -a $LOG_FILE
        exit 1
     fi
 }
@@ -39,19 +39,19 @@ VALIDATE(){
 dnf list installed nginx  &>> "$LOG_FILE"
 if [ $? -ne 0 ]
 then
-   echo -e " $M nginx is not installed going to install $N " &>> "$LOG_FILE"
+   echo -e " $M nginx is not installed going to install $N " | tee -a $LOG_FILE
    dnf install nginx -y  &>> "$LOG_FILE"
-   VALIDATE $? "nginx"  &>> "$LOG_FILE"
+   VALIDATE $? "nginx"  
 else
-   echo -e " $Y nginx is already installed $N " &>> "$LOG_FILE"
+   echo -e " $Y nginx is already installed $N " | tee -a $LOG_FILE
 fi
 
 dnf list installed python3  &>> "$LOG_FILE"
 if [ $? -ne 0 ]
 then
-   echo -e " $M python3 is not installed going to install $N "  &>> "$LOG_FILE"
+   echo -e " $M python3 is not installed going to install $N " | tee -a $LOG_FILE
    dnf install python3 -y &>> "$LOG_FILE"
-   VALIDATE $? "python3"  &>> "$LOG_FILE"
+   VALIDATE $? "python3"  
 else
-   echo -e " $Y python3 is already installed $N "  &>> "$LOG_FILE"
+   echo -e " $Y python3 is already installed $N "  | tee -a $LOG_FILE
 fi
