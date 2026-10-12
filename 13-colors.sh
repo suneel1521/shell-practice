@@ -8,7 +8,7 @@ N="\e[0m"
 
 
 USERID=$(id -u)
-if [ $USERID -ne 0]
+if [ $USERID -ne 0 ]
 then
    echo -e " $R ERROR: please execute the script with root access $N "
    exit 1
@@ -29,16 +29,17 @@ VALIDATE(){
 }
 
 dnf list installed nginx
-if [ $? -eq 0 ]
+if [ $? -ne 0 ]
 then
    echo -e " $M nginx is not installed going to install $N "
    dnf install nginx -y
    VALIDATE $? "nginx"
 else
    echo -e " $Y nginx is already installed $N "
+fi
 
 dnf list installed python3
-if [ $? -eq 0 ]
+if [ $? -ne 0 ]
 then
    echo -e " $M python3 is not installed going to install $N "
    dnf install python3 -y
