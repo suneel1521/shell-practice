@@ -11,6 +11,7 @@ N="\e[0m"
 LOG_FOLDER=/var/log/shell_log
 SCRIPT_NAME=$(echo $0 | cut -d "." -f1)
 LOG_FILE="$LOG_FOLDER/$SCRIPT_NAME.log"
+mkdir -p $LOG_FOLDER
 
 USERID=$(id -u)
 
@@ -22,7 +23,6 @@ else
    echo -e "$B you are running with root access $N" | tee -a "$LOG_FILE"
 fi
 
-mkdir -p $LOG_FOLDER
 echo -e "$M script executed at:$(date) $N" | tee -a "$LOG_FILE"
 
 
