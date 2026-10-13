@@ -40,11 +40,11 @@ PACKAGES=("nginx" "python3" "mysql" "httpd")
 
 for package in "${PACKAGES[@]}"
 do
-  dnf list installed $package $>>"$LOG_FILE"
+  dnf list installed $package &>>"$LOG_FILE"
   if [ $? -eq 0 ]
   then
       echo -e "$package is not installed going to install" | tee -a "$LOG_FILE"
-      dnf install $package -y $>>"$LOG_FILE"
+      dnf install $package -y &>>"$LOG_FILE"
       VALIDATE $? "$package"
   else
       echo -e "$Y $package is alreday installed ok $N " | tee -a "$LOG_FILE"
