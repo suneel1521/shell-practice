@@ -22,9 +22,9 @@ else
    echo -e "$B you are running with root access $N" | tee -a "$LOG_FILE"
 fi
 
+mkdir -p $LOG_FOLDER
 echo -e "$M script executed at:$(date) $N" | tee -a "$LOG_FILE"
 
-mkdir $LOG_FOLDER
 
 VALIDATE(){
 
