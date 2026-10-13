@@ -24,6 +24,8 @@ fi
 
 echo -e "$M script executed at:$(date) $N" | tee -a "$LOG_FILE"
 
+mkdir $LOG_FOLDER
+
 VALIDATE(){
 
 	if [ $1 -eq 0 ]
